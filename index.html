@@ -34,31 +34,25 @@
             margin-bottom: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
         }
         .bar-item:hover { border-color: var(--accent); transform: translateX(5px); background: #1c2128; }
         .bar-item h3 { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; }
-        .bar-item p { font-size: 0.95rem; color: var(--text-muted); }
 
-        .btn { display: inline-block; background: var(--accent); color: #fff; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; margin-top: 1rem; }
+        .btn { display: inline-block; background: var(--accent); color: #fff; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; margin: 1rem 0; }
         .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); margin-bottom: 2rem; }
 
-        .document-preview { 
-            width: 100%; 
-            background: #fff; 
-            color: #000; 
-            border-radius: 8px; 
-            margin-top: 1.5rem; 
-            padding: 3rem;
-            white-space: pre;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            overflow-x: auto;
+        /* THE LIVE DOC PREVIEW CONTAINER */
+        .doc-container {
+            width: 100%;
+            height: 800px; /* Adjust height for better viewing */
+            background: #fff;
+            border-radius: 8px;
             border: 1px solid var(--border);
-            line-height: 1.2;
+            overflow: hidden;
+            margin-top: 1rem;
         }
-        
+        iframe { width: 100%; height: 100%; border: none; }
+
         footer { text-align: center; padding: 2rem; background: var(--surface-color); border-top: 1px solid var(--border); color: var(--text-muted); margin-top: auto; }
     </style>
 </head>
@@ -77,43 +71,44 @@
     <div id="home" class="view-section active-view">
         <h1 style="font-size: 3rem; text-align: center;">Daniel Rodier</h1>
         <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem;">Broadcast Engineer & Production Technician</p>
-        <div class="bar-item" onclick="navigateTo('resume')"><h3>Resume</h3><p>Full technical and professional history.</p></div>
-        <div class="bar-item" onclick="navigateTo('reel')"><h3>Demo Reel</h3><p>Live production and technical direction showcase.</p></div>
-        <div class="bar-item" onclick="navigateTo('scripts-hub')"><h3>Scripts & Writing</h3><p>Access categorized broadcast scripts.</p></div>
+        <div class="bar-item" onclick="navigateTo('resume')"><h3>Resume</h3><p>Professional history and technical skills.</p></div>
+        <div class="bar-item" onclick="navigateTo('scripts-hub')"><h3>Scripts & Writing</h3><p>Live broadcast scripts and rundowns.</p></div>
     </div>
 
     <div id="resume" class="view-section">
         <h1>Resume</h1>
         <a href="Resume_-_Daniel_Rodier.docx" download class="btn">Download .DOCX</a>
-        <div class="document-preview">
-[RESUME CONTENT PLACED HERE]
+        <div class="doc-container">
+            <iframe src="https://docs.google.com/gview?url=https://danielrodier.net/Resume_-_Daniel_Rodier.docx&embedded=true"></iframe>
         </div>
     </div>
 
     <div id="reel" class="view-section">
         <h1>Demo Reel</h1>
-        <div style="margin-top:2rem; background:var(--surface-color); height: 400px; border-radius:8px; display: flex; align-items: center; justify-content: center;">[Video Player]</div>
+        <div style="margin-top:2rem; background:var(--surface-color); height: 400px; border-radius:8px; display: flex; align-items: center; justify-content: center;">[YouTube/Vimeo Embed Code Here]</div>
     </div>
 
     <div id="scripts-hub" class="view-section">
         <h1>Script Categories</h1>
-        <div class="bar-item" onclick="openCategory('PSA')"><h3>Public Service Announcement</h3><p>Safety-focused community messaging.</p></div>
-        <div class="bar-item" onclick="openCategory('Ad')"><h3>30-Second Advertisements</h3><p>High-energy commercial tourism spots.</p></div>
-        <div class="bar-item" onclick="openCategory('News')"><h3>News Packages</h3><p>Technical reporting and collegiate esports coverage.</p></div>
-        <div class="bar-item" onclick="openCategory('Show')"><h3>Student Created Shows</h3><p>Full episode rundowns and studio scripts.</p></div>
+        <div class="bar-item" onclick="openCategory('PSA')"><h3>Public Service Announcement</h3></div>
+        <div class="bar-item" onclick="openCategory('Ad')"><h3>30-Second Advertisements</h3></div>
+        <div class="bar-item" onclick="openCategory('News')"><h3>News Packages</h3></div>
+        <div class="bar-item" onclick="openCategory('Show')"><h3>Student Created Shows</h3></div>
     </div>
 
     <div id="category-list" class="view-section">
         <button class="btn btn-outline" onclick="navigateTo('scripts-hub')">&larr; Back to Categories</button>
         <h1 id="category-title"></h1>
-        <div id="scripts-container"></div>
+        <div id="scripts-container" style="margin-top: 1rem;"></div>
     </div>
 
     <div id="script-detail" class="view-section">
         <button class="btn btn-outline" id="back-to-cat-btn">&larr; Back</button>
-        <h1 id="detail-title"></h1>
+        <h1 id="detail-title" style="margin-bottom: 0.5rem;"></h1>
         <a id="download-link" href="#" download class="btn">Download File</a>
-        <div class="document-preview" id="preview-text"></div>
+        <div class="doc-container" id="doc-preview-area">
+            <iframe id="preview-iframe" src=""></iframe>
+        </div>
     </div>
 
     <footer><p>&copy; 2026 Daniel Rodier</p></footer>
@@ -121,62 +116,24 @@
     <script>
         const scriptData = {
             'PSA': [
-                {
-                    title: 'NTSB: No Texting',
-                    file: 'NTSB_No_Texting_-_PSA.docx',
-                    desc: 'Safety narrative highlighting distracted driving dangers.',
-                    content: `CLIENT: NTSB\nPRODUCT: No Texting\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. MS: Mabe entering car. (:03)                 1. NAT: Door opening/closing.\n2. MS: Mabe turning on ignition. (:02)            2. SFX: Car turning over.\n3. CU: Mabe putting car in gear. (:03)            3. SFX: Gear shifter engage.\n4. OTS: Mabe driving. (:05)                     4. SFX: Engine background.\n5. WS: Skyler in crosswalk. (:03)                 5. SFX: Phone notification.\n6. CU: Mabe's phone lighting up. (:02)            6. SFX: Rapid texting sound.\n7. MS: Blurred Mabe looking down. (:04)           7. SFX: Music swells high.\n8. WS: Car approaching Skyler. (:04)              8. SFX: Sudden ringing.\n9. BLACK. (:01)                                   9. SILENCE.\n10. GFX: "Don't Text And Drive" (:01)             10. VO: "Stay focused."\n--------------------------------------------------------------------------`
-                }
+                { title: 'NTSB: No Texting', file: 'NTSB_No_Texting_-_PSA.docx' }
             ],
             'Ad': [
-                {
-                    title: 'HTA: Newlyweds',
-                    file: 'Newlyweds_-_30_Second_Ad.docx',
-                    desc: 'Romantic luxury escape spot for honeymooners.',
-                    content: `CLIENT: Hawaii Tourism Authority (HTA)\nPRODUCT: Newlyweds\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Couple on beach at sunset. (:02)           1. SFX: Soft ocean waves.\n2. CU: Champagne clink at dinner. (:03)           2. VO: "The perfect escape."\n3. MLS: Couple on cliffside. (:03)                3. SFX: Gentle piano music.\n4. AERIAL: Swimming in lagoon. (:02)               4. VO: "Unforgettable moments."\n5. MS: Sailing on luxury boat. (:02)              5. SFX: Dolphins splashing.\n6. MS: Spa treatment montage. (:03)                6. VO: "New memories await."\n7. QUICK CUTS: Hiking/Dining. (:04)               7. SFX: Music swells.\n8. MS: Kiss under fireworks. (:03)                8. VO: "Your destination."\n9. GFX: HTA Logo. (:03)                           9. VO: "Discover Hawaii."\n--------------------------------------------------------------------------`
-                },
-                {
-                    title: 'HTA: College Students',
-                    file: 'College_-_30_Second_Ad.docx',
-                    desc: 'High-energy "tropical playground" advertisement.',
-                    content: `CLIENT: HTA\nPRODUCT: College Students\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Beachside party at dusk. (:02)             1. SFX: Tropical house music.\n2. CU: Group tossing a lei. (:03)                 2. VO: "The ultimate getaway."\n3. QUICK CUT: Ocean cliff jump. (:03)             3. SFX: Splash & Cheers.\n4. MLS: Bonfire on beach. (:02)                   4. VO: "Sun and surf."\n5. MONTAGE: DJ / Driving. (:02)                   5. SFX: Bonfire crackling.\n6. AERIAL: Parasailing sunset. (:03)              6. VO: "Adventure is calling."\n7. WS: Rooftop party Honolulu. (:03)              7. SFX: Music builds fast.\n8. QUICK CUTS: Volleyball/Surfing. (:04)           8. VO: "Make memories."\n9. GFX: HTA Logo. (:03)                           9. VO: "Hawaii: Play hard."\n--------------------------------------------------------------------------`
-                },
-                {
-                    title: 'HTA: Parents with Kids',
-                    file: 'Parents_with_Kids_-_30_Second_Ad.docx',
-                    desc: 'Family adventure highlight for all ages.',
-                    content: `CLIENT: HTA\nPRODUCT: Family Vacay\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Family building sandcastle. (:02)          1. SFX: Children laughing.\n2. CU: Girl seeing sea turtles. (:03)             2. VO: "The perfect vacation?"\n3. MLS: Catamaran ride. (:03)                     3. SFX: Waves & Giggle.\n4. QUICK CUT: Snorkeling/Pool. (:03)              4. VO: "Adventure for all."\n5. MS: Father lifting child. (:02)                5. SFX: Water splashing.\n6. AERIAL: Biking through garden. (:03)           6. VO: "Fun for all ages."\n7. MS: Parents relaxing at pool. (:02)            7. SFX: Luau music starts.\n8. MONTAGE: Hula / Kids show. (:04)               8. VO: "Create memories."\n9. GFX: HTA Logo. (:03)                           9. VO: "Your next adventure."\n--------------------------------------------------------------------------`
-                },
-                {
-                    title: 'HTA: Retirees',
-                    file: 'Retirees_-_30_Second_Ad.docx',
-                    desc: 'Sophisticated luxury retreat highlight.',
-                    content: `CLIENT: HTA\nPRODUCT: Retirees\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Couple on beach sunrise. (:02)             1. SFX: Gentle piano & birds.\n2. CU: Toasting wine on terrace. (:03)            2. VO: "Your luxurious escape."\n3. MLS: Private yacht bow. (:03)                  3. SFX: Wine glass clink.\n4. QUICK CUTS: Luxury Spa. (:03)                  4. VO: "Serenity and beauty."\n5. MS: Al fresco dining sunset. (:02)             5. SFX: Soft wind & waves.\n6. AERIAL: Golfing oceanfront. (:03)              6. VO: "Tailored for you."\n7. MS: Infinity pool cocktails. (:03)             7. SFX: Smooth jazz music.\n8. MONTAGE: Art/Shopping/Yoga. (:04)              8. VO: "Explore the finest."\n9. GFX: HTA Logo. (:03)                           9. VO: "Your elegant retreat."\n--------------------------------------------------------------------------`
-                }
+                { title: 'HTA: Newlyweds', file: 'Newlyweds_-_30_Second_Ad.docx' },
+                { title: 'HTA: College Students', file: 'College_-_30_Second_Ad.docx' },
+                { title: 'HTA: Parents with Kids', file: 'Parents_with_Kids_-_30_Second_Ad.docx' },
+                { title: 'HTA: Retirees', file: 'Retirees_-_30_Second_Ad.docx' }
             ],
             'News': [
-                {
-                    title: 'WSIE: Radio Modernization',
-                    file: 'WSIE_News_Package.doc',
-                    desc: 'Coverage of technical upgrades at SIUE jazz station.',
-                    content: `STORY: WSIE Upgrade\nTRT: 1:25\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\nW/S: Tilt radio tower.                            NAT: Jazz music up (:08)\nSTAND UP: Daniel Rodier.                          SU: "Behind me is the tower..."\nC/U: Interview Jason Church.                      SOT: "The current transmitter..."\nC/U: Interview Hannah Loftis.                     SOT: "I have not met before..."\nC/U: Interview Amyri Davis.                       SOT: "I think this is good..."\n--------------------------------------------------------------------------`
-                },
-                {
-                    title: 'NACE: Starleague Finals',
-                    file: 'NACE_News_Package.docx',
-                    desc: 'Esports finals coverage and technical integrity.',
-                    content: `STORY: NACE Starleague\nTRT: 1:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\nWS: Teams setting up on stage.                    NAT: Team celebrating.\nSOT: Brennan ‘Beazr’ Leeper.                      SOT: "The setup wasn't great..."\nWS: RIT Team Winning Moment.                      NAT: RIT cheering.\nSOT: Matthew ‘MJB’ Brown.                         SOT: "The delay impacted us..."\nWS: Studio melt sequence.                         SU: "I'm Daniel Rodier, WBOI."\n--------------------------------------------------------------------------`
-                }
+                { title: 'WSIE: Radio Modernization', file: 'WSIE_News_Package.doc' },
+                { title: 'NACE: Starleague Finals', file: 'NACE_News_Package.docx' }
             ],
             'Show': [
-                {
-                    title: 'Global Village: Episode 4',
-                    file: 'GV_SP_2025_Episode_4.docx',
-                    desc: 'Full studio rundown for SIUE student show.',
-                    content: `SHOW: Global Village (Ep 4)\nPRODUCER: Daniel Rodier\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. GV Intro                                       1. MUSIC UP\n2. MAC LAB: Ally/Annabelle/Robbie                 2. "Welcome to Global Village!"\n3. PKG: Making Lasagna (3:47)                     3. "Italian food with Eric."\n4. PKG: Pet Adoption (2:38)                       4. "Check out the puppies!"\n5. PKG: Kickboxing (2:28)                         5. "Self defense pointers."\n6. PKG: Life of a Gamer (2:07)                    6. "Pick up gaming!"\n7. OUTRO: Studio Desk                             7. "Thanks for watching!"\n--------------------------------------------------------------------------`
-                }
+                { title: 'Global Village: Episode 4', file: 'GV_SP_2025_Episode_4.docx' }
             ]
         };
+
+        const baseURL = "https://danielrodier.net/";
 
         function navigateTo(viewId) {
             document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active-view'));
@@ -189,14 +146,19 @@
             document.getElementById('category-title').innerText = titles[cat];
             const container = document.getElementById('scripts-container');
             container.innerHTML = ''; 
+            
             scriptData[cat].forEach(script => {
                 const div = document.createElement('div');
                 div.className = 'bar-item';
-                div.innerHTML = `<h3>${script.title}</h3><p>${script.desc}</p>`;
+                div.innerHTML = `<h3>${script.title}</h3>`;
                 div.onclick = () => {
                     document.getElementById('detail-title').innerText = script.title;
-                    document.getElementById('preview-text').innerText = script.content;
                     document.getElementById('download-link').href = script.file;
+                    
+                    // Dynamic Google Viewer Link
+                    const docUrl = baseURL + script.file;
+                    document.getElementById('preview-iframe').src = `https://docs.google.com/gview?url=${docUrl}&embedded=true`;
+                    
                     document.getElementById('back-to-cat-btn').onclick = () => openCategory(cat);
                     navigateTo('script-detail');
                 };
