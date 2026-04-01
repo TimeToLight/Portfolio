@@ -36,7 +36,6 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            position: relative;
         }
         .bar-item:hover { border-color: var(--accent); transform: translateX(5px); background: #1c2128; }
         .bar-item h3 { font-size: 1.25rem; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; }
@@ -45,7 +44,6 @@
         .btn { display: inline-block; background: var(--accent); color: #fff; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; margin-top: 1rem; }
         .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); margin-bottom: 2rem; }
 
-        /* THE SCRIPT PREVIEW: FORCED ALIGNMENT */
         .document-preview { 
             width: 100%; 
             background: #fff; 
@@ -53,7 +51,7 @@
             border-radius: 8px; 
             margin-top: 1.5rem; 
             padding: 3rem;
-            white-space: pre; /* Keeps column alignment exact */
+            white-space: pre;
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.85rem;
             overflow-x: auto;
@@ -86,8 +84,10 @@
 
     <div id="resume" class="view-section">
         <h1>Resume</h1>
-        <a href="daniel_rodier_resume.docx" download class="btn">Download .DOCX</a>
-        <div class="document-preview">[Resume Preview Integration]</div>
+        <a href="Resume_-_Daniel_Rodier.docx" download class="btn">Download .DOCX</a>
+        <div class="document-preview">
+[RESUME CONTENT PLACED HERE]
+        </div>
     </div>
 
     <div id="reel" class="view-section">
@@ -112,69 +112,68 @@
     <div id="script-detail" class="view-section">
         <button class="btn btn-outline" id="back-to-cat-btn">&larr; Back</button>
         <h1 id="detail-title"></h1>
-        <a id="download-link" href="#" download class="btn">Download .DOCX</a>
+        <a id="download-link" href="#" download class="btn">Download File</a>
         <div class="document-preview" id="preview-text"></div>
     </div>
 
     <footer><p>&copy; 2026 Daniel Rodier</p></footer>
 
     <script>
-        // NORMALIZED DATA OBJECT
         const scriptData = {
             'PSA': [
                 {
                     title: 'NTSB: No Texting',
-                    file: 'ntsb_no_texting_psa.docx',
+                    file: 'NTSB_No_Texting_-_PSA.docx',
                     desc: 'Safety narrative highlighting distracted driving dangers.',
-                    content: `CLIENT: NTSB                                      WRITER: Daniel Rodier\nPRODUCT: No Texting                               LENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\nFADEUP ON:                                        \n1. MS: Driver entering car. (:03)                 1. SFX: Door opening/closing.\n2. MS: Turning on ignition. (:02)                  2. SFX: Car turning over.\n3. CU: Putting car in gear. (:03)                  3. SFX: Gear shifter engage.\n4. OTS: Driver driving. (:05)                     4. SFX: Engine background.\n5. WS: Pedestrian in crosswalk. (:03)             5. SFX: Phone notification chime.\n6. CU: Phone screen lighting up. (:02)            6. SFX: Rapid texting sound.\n7. MS: Blurred driver looking down. (:04)          7. SFX: Music swells high.\n8. WS: Car approaching pedestrian. (:04)           8. SFX: Sudden ringing/silence.\n9. BLACK. (:01)                                   9. SILENCE.\n10. GFX: "Don't Text And Drive" (:01)             10. VO: "Stay focused. Stay alive."\n--------------------------------------------------------------------------`
+                    content: `CLIENT: NTSB\nPRODUCT: No Texting\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. MS: Mabe entering car. (:03)                 1. NAT: Door opening/closing.\n2. MS: Mabe turning on ignition. (:02)            2. SFX: Car turning over.\n3. CU: Mabe putting car in gear. (:03)            3. SFX: Gear shifter engage.\n4. OTS: Mabe driving. (:05)                     4. SFX: Engine background.\n5. WS: Skyler in crosswalk. (:03)                 5. SFX: Phone notification.\n6. CU: Mabe's phone lighting up. (:02)            6. SFX: Rapid texting sound.\n7. MS: Blurred Mabe looking down. (:04)           7. SFX: Music swells high.\n8. WS: Car approaching Skyler. (:04)              8. SFX: Sudden ringing.\n9. BLACK. (:01)                                   9. SILENCE.\n10. GFX: "Don't Text And Drive" (:01)             10. VO: "Stay focused."\n--------------------------------------------------------------------------`
                 }
             ],
             'Ad': [
                 {
                     title: 'HTA: Newlyweds',
-                    file: 'newlyweds_30s_ad.docx',
+                    file: 'Newlyweds_-_30_Second_Ad.docx',
                     desc: 'Romantic luxury escape spot for honeymooners.',
-                    content: `CLIENT: Hawaii Tourism Authority (HTA)           WRITER: Daniel Rodier\nPRODUCT: Newlyweds                                LENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Couple on beach at sunset. (:02)           1. SFX: Soft ocean waves.\n2. CU: Champagne clink at dinner. (:03)           2. VO: "The perfect escape."\n3. MLS: Couple on cliffside. (:03)                3. SFX: Gentle piano music.\n4. AERIAL: Swimming in lagoon. (:02)               4. VO: "Unforgettable moments."\n5. MS: Sailing on luxury boat. (:02)              5. SFX: Dolphins splashing.\n6. MS: Spa treatment montage. (:03)                6. VO: "New memories await."\n7. QUICK CUTS: Hiking/Dining. (:04)               7. SFX: Music swells.\n8. MS: Kiss under fireworks. (:03)                8. VO: "Your dream destination."\n9. GFX: HTA Logo. (:03)                           9. VO: "Discover Hawaii."\n--------------------------------------------------------------------------`
+                    content: `CLIENT: Hawaii Tourism Authority (HTA)\nPRODUCT: Newlyweds\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Couple on beach at sunset. (:02)           1. SFX: Soft ocean waves.\n2. CU: Champagne clink at dinner. (:03)           2. VO: "The perfect escape."\n3. MLS: Couple on cliffside. (:03)                3. SFX: Gentle piano music.\n4. AERIAL: Swimming in lagoon. (:02)               4. VO: "Unforgettable moments."\n5. MS: Sailing on luxury boat. (:02)              5. SFX: Dolphins splashing.\n6. MS: Spa treatment montage. (:03)                6. VO: "New memories await."\n7. QUICK CUTS: Hiking/Dining. (:04)               7. SFX: Music swells.\n8. MS: Kiss under fireworks. (:03)                8. VO: "Your destination."\n9. GFX: HTA Logo. (:03)                           9. VO: "Discover Hawaii."\n--------------------------------------------------------------------------`
                 },
                 {
                     title: 'HTA: College Students',
-                    file: 'college_30s_ad.docx',
+                    file: 'College_-_30_Second_Ad.docx',
                     desc: 'High-energy "tropical playground" advertisement.',
-                    content: `CLIENT: HTA                                       WRITER: Daniel Rodier\nPRODUCT: Tropical Playground                      LENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Beachside party at dusk. (:02)             1. SFX: Tropical house music.\n2. CU: Group throwing leis. (:03)                 2. VO: "The ultimate getaway."\n3. QUICK CUT: Ocean cliff jump. (:03)             3. SFX: Splash & Cheers.\n4. MLS: Bonfire on beach. (:02)                   4. VO: "Sun, surf, and nights."\n5. MONTAGE: DJ / Driving. (:02)                   5. SFX: Bonfire crackling.\n6. AERIAL: Parasailing. (:03)                     6. VO: "Adventure is calling."\n7. WS: Rooftop party Honolulu. (:03)              7. SFX: Music builds fast.\n8. QUICK CUTS: Volleyball/Surfing. (:04)           8. VO: "Make memories forever."\n9. GFX: HTA Logo. (:03)                           9. VO: "Hawaii: play hard."\n--------------------------------------------------------------------------`
+                    content: `CLIENT: HTA\nPRODUCT: College Students\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Beachside party at dusk. (:02)             1. SFX: Tropical house music.\n2. CU: Group tossing a lei. (:03)                 2. VO: "The ultimate getaway."\n3. QUICK CUT: Ocean cliff jump. (:03)             3. SFX: Splash & Cheers.\n4. MLS: Bonfire on beach. (:02)                   4. VO: "Sun and surf."\n5. MONTAGE: DJ / Driving. (:02)                   5. SFX: Bonfire crackling.\n6. AERIAL: Parasailing sunset. (:03)              6. VO: "Adventure is calling."\n7. WS: Rooftop party Honolulu. (:03)              7. SFX: Music builds fast.\n8. QUICK CUTS: Volleyball/Surfing. (:04)           8. VO: "Make memories."\n9. GFX: HTA Logo. (:03)                           9. VO: "Hawaii: Play hard."\n--------------------------------------------------------------------------`
                 },
                 {
-                    title: 'HTA: Parents & Kids',
-                    file: 'family_30s_ad.docx',
+                    title: 'HTA: Parents with Kids',
+                    file: 'Parents_with_Kids_-_30_Second_Ad.docx',
                     desc: 'Family adventure highlight for all ages.',
-                    content: `CLIENT: HTA                                       WRITER: Daniel Rodier\nPRODUCT: Family Vacay                             LENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Family building sandcastle. (:02)          1. SFX: Children laughing.\n2. CU: Girl seeing sea turtles. (:03)             2. VO: "A perfect family trip?"\n3. MLS: Catamaran ride. (:03)                     3. SFX: Waves & Giggle.\n4. QUICK CUT: Snorkeling/Pool. (:03)              4. VO: "Adventure for all."\n5. MS: Father with kid on trail. (:02)            5. SFX: Water splashing.\n6. AERIAL: Biking through garden. (:03)           6. VO: "Fun for all ages."\n7. MS: Parents relaxing at pool. (:02)            7. SFX: Luau music starts.\n8. MONTAGE: Hula / Kids show. (:04)               8. VO: "Create lasting memories."\n9. GFX: HTA Logo. (:03)                           9. VO: "Your next big adventure."\n--------------------------------------------------------------------------`
+                    content: `CLIENT: HTA\nPRODUCT: Family Vacay\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Family building sandcastle. (:02)          1. SFX: Children laughing.\n2. CU: Girl seeing sea turtles. (:03)             2. VO: "The perfect vacation?"\n3. MLS: Catamaran ride. (:03)                     3. SFX: Waves & Giggle.\n4. QUICK CUT: Snorkeling/Pool. (:03)              4. VO: "Adventure for all."\n5. MS: Father lifting child. (:02)                5. SFX: Water splashing.\n6. AERIAL: Biking through garden. (:03)           6. VO: "Fun for all ages."\n7. MS: Parents relaxing at pool. (:02)            7. SFX: Luau music starts.\n8. MONTAGE: Hula / Kids show. (:04)               8. VO: "Create memories."\n9. GFX: HTA Logo. (:03)                           9. VO: "Your next adventure."\n--------------------------------------------------------------------------`
                 },
                 {
                     title: 'HTA: Retirees',
-                    file: 'retirees_30s_ad.docx',
+                    file: 'Retirees_-_30_Second_Ad.docx',
                     desc: 'Sophisticated luxury retreat highlight.',
-                    content: `CLIENT: HTA                                       WRITER: Daniel Rodier\nPRODUCT: Retirees                                 LENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Couple on beach sunrise. (:02)             1. SFX: Gentle piano & birds.\n2. CU: Toasting wine on terrace. (:03)            2. VO: "Your luxurious escape."\n3. MLS: Private yacht bow. (:03)                  3. SFX: Wine glass clink.\n4. QUICK CUTS: Luxury Spa. (:03)                  4. VO: "Unparalleled serenity."\n5. MS: Al fresco dining sunset. (:02)             5. SFX: Soft wind & waves.\n6. AERIAL: Golfing oceanfront. (:03)              6. VO: "Tailored for enjoyment."\n7. MS: Infinity pool cocktails. (:03)             7. SFX: Smooth jazz music.\n8. MONTAGE: Art/Shopping/Yoga. (:04)              8. VO: "Explore the finest."\n9. GFX: HTA Logo. (:03)                           9. VO: "Your elegant retreat."\n--------------------------------------------------------------------------`
+                    content: `CLIENT: HTA\nPRODUCT: Retirees\nLENGTH: 00:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. WS: Couple on beach sunrise. (:02)             1. SFX: Gentle piano & birds.\n2. CU: Toasting wine on terrace. (:03)            2. VO: "Your luxurious escape."\n3. MLS: Private yacht bow. (:03)                  3. SFX: Wine glass clink.\n4. QUICK CUTS: Luxury Spa. (:03)                  4. VO: "Serenity and beauty."\n5. MS: Al fresco dining sunset. (:02)             5. SFX: Soft wind & waves.\n6. AERIAL: Golfing oceanfront. (:03)              6. VO: "Tailored for you."\n7. MS: Infinity pool cocktails. (:03)             7. SFX: Smooth jazz music.\n8. MONTAGE: Art/Shopping/Yoga. (:04)              8. VO: "Explore the finest."\n9. GFX: HTA Logo. (:03)                           9. VO: "Your elegant retreat."\n--------------------------------------------------------------------------`
                 }
             ],
             'News': [
                 {
                     title: 'WSIE: Radio Modernization',
-                    file: 'wsie_news_package.docx',
+                    file: 'WSIE_News_Package.doc',
                     desc: 'Coverage of technical upgrades at SIUE jazz station.',
-                    content: `STORY: WSIE Upgrade                               REPORTER: Daniel Rodier\nTRT: 1:25                                         DATE: March 24, 2024\n--------------------------------------------------------------------------\nLEAD: WSIE is going from the old into the new. How will this make SIUE’s \nflagship jazz station more accessible?\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\nW/S: Tilt radio tower.                            NAT: Jazz music up (:08)\nSTAND UP: Daniel Rodier.                          SU: "Behind me is the tower..."\nC/U: Interview Jason Church.                      SOT: "The current transmitter..."\nC/U: Interview Hannah Loftis.                     SOT: "I have not met before..."\nC/U: Interview Amyri Davis.                       SOT: "I think this is good..."\n--------------------------------------------------------------------------`
+                    content: `STORY: WSIE Upgrade\nTRT: 1:25\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\nW/S: Tilt radio tower.                            NAT: Jazz music up (:08)\nSTAND UP: Daniel Rodier.                          SU: "Behind me is the tower..."\nC/U: Interview Jason Church.                      SOT: "The current transmitter..."\nC/U: Interview Hannah Loftis.                     SOT: "I have not met before..."\nC/U: Interview Amyri Davis.                       SOT: "I think this is good..."\n--------------------------------------------------------------------------`
                 },
                 {
                     title: 'NACE: Starleague Finals',
-                    file: 'nace_news_package.docx',
+                    file: 'NACE_News_Package.docx',
                     desc: 'Esports finals coverage and technical integrity.',
-                    content: `STORY: NACE Starleague                            REPORTER: Daniel Rodier\nTRT: 1:30                                         LOCATION: Boise, ID\n--------------------------------------------------------------------------\nLEAD: Boise State University held the festivities in their newly renovated \nesports center. WBOI’s Daniel Rodier has the story.\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\nWS: Teams setting up on stage.                    NAT: Team celebrating.\nSOT: Brennan ‘Beazr’ Leeper.                      SOT: "The setup wasn't great..."\nWS: RIT CS2 Team Celebrating.                     NAT: RIT cheering.\nSOT: Matthew ‘MJB’ Brown.                         SOT: "The delay impacted us..."\nWS: Studio melt sequence.                         SU: "I'm Daniel Rodier, WBOI."\n--------------------------------------------------------------------------`
+                    content: `STORY: NACE Starleague\nTRT: 1:30\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\nWS: Teams setting up on stage.                    NAT: Team celebrating.\nSOT: Brennan ‘Beazr’ Leeper.                      SOT: "The setup wasn't great..."\nWS: RIT Team Winning Moment.                      NAT: RIT cheering.\nSOT: Matthew ‘MJB’ Brown.                         SOT: "The delay impacted us..."\nWS: Studio melt sequence.                         SU: "I'm Daniel Rodier, WBOI."\n--------------------------------------------------------------------------`
                 }
             ],
             'Show': [
                 {
                     title: 'Global Village: Episode 4',
-                    file: 'gv_ep4_script.docx',
+                    file: 'GV_SP_2025_Episode_4.docx',
                     desc: 'Full studio rundown for SIUE student show.',
-                    content: `SHOW: Global Village (Ep 4)                       PRODUCER: Daniel Rodier\nDATE: 03/05/2025                                  DIRECTOR: JJ Sweatt\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. GV Intro                                       1. MUSIC UP\n2. MAC LAB: Ally/Annabelle Intro                  2. "Welcome to Global Village!"\n3. PKG: Making Lasagna (3:47)                     3. "Italian food with Eric."\n4. PKG: Pet Adoption (2:38)                       4. "See a pet adoption center!"\n5. PKG: Kickboxing (2:28)                         5. "Self defense pointers."\n6. PKG: Life of a Gamer (2:07)                    6. "Pick up gaming!"\n7. OUTRO: Studio Desk                             7. "Thanks for watching!"\n--------------------------------------------------------------------------`
+                    content: `SHOW: Global Village (Ep 4)\nPRODUCER: Daniel Rodier\n--------------------------------------------------------------------------\nVIDEO                                             AUDIO\n--------------------------------------------------------------------------\n1. GV Intro                                       1. MUSIC UP\n2. MAC LAB: Ally/Annabelle/Robbie                 2. "Welcome to Global Village!"\n3. PKG: Making Lasagna (3:47)                     3. "Italian food with Eric."\n4. PKG: Pet Adoption (2:38)                       4. "Check out the puppies!"\n5. PKG: Kickboxing (2:28)                         5. "Self defense pointers."\n6. PKG: Life of a Gamer (2:07)                    6. "Pick up gaming!"\n7. OUTRO: Studio Desk                             7. "Thanks for watching!"\n--------------------------------------------------------------------------`
                 }
             ]
         };
