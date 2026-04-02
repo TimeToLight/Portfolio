@@ -113,13 +113,36 @@ nav {
 .bar-item h3 { color: var(--accent); margin-bottom: 0.5rem; }
 
 /* --- FOOTER --- */
-footer { background: var(--bg-color); border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 4rem; position: relative; }
-.footer-grid { display: grid; grid-template-columns: 1fr 2fr 2fr 1fr; max-width: 1200px; margin: 0 auto 2rem auto; gap: 1.5rem; }
+footer { 
+    background: var(--bg-color); 
+    border-top: 1px solid var(--border); 
+    padding: 3rem 0 1.5rem; 
+    margin-top: 4rem; 
+    position: relative; 
+}
+
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 2fr 2fr 1fr; 
+    max-width: 1200px; 
+    margin: 0 auto 2rem auto; 
+    gap: 1.5rem; 
+}
+
 .footer-column { display: flex; flex-direction: column; }
 .footer-column.socials { align-items: flex-end; }
 .footer-column.contact { align-items: flex-start; }
 
-/* UPDATED FOOTER CARD FOR EMAIL */
+/* Thin-Bold Blue Headers */
+.footer-column h4 {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.2rem;
+}
+
 .footer-card { 
     display: flex; 
     align-items: center; 
@@ -134,7 +157,7 @@ footer { background: var(--bg-color); border-top: 1px solid var(--border); paddi
     transition: 0.3s; 
     width: fit-content; 
     min-width: 240px; 
-    cursor: pointer; /* FIX: Shows the hand icon */
+    cursor: pointer;
 }
 
 .footer-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(88, 166, 255, 0.15); }
@@ -142,21 +165,38 @@ footer { background: var(--bg-color); border-top: 1px solid var(--border); paddi
 
 .copyright { text-align: center; color: var(--text-muted); font-size: 0.8rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 
-/* --- COPY POPUP FIX --- */
-#copy-message {
-    position: fixed; /* FIX: Keeps it on screen regardless of footer */
-    bottom: 30px;
+/* --- TOAST NOTIFICATION --- */
+#copy-toast {
+    visibility: hidden;
+    min-width: 200px;
+    background-color: var(--accent);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 12px;
+    position: fixed;
+    z-index: 2000;
     left: 50%;
+    bottom: 30px;
     transform: translateX(-50%);
-    background: var(--accent);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-size: 0.9rem;
     font-weight: 600;
-    z-index: 9999; /* FIX: Sits on top of everything */
-    display: none; /* Controlled by JS */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#copy-toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.0s;
+}
+
+@keyframes fadein {
+    from { bottom: 0; opacity: 0; }
+    to { bottom: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { bottom: 30px; opacity: 1; }
+    to { bottom: 0; opacity: 0; }
 }
 
 /* --- MOBILE --- */
