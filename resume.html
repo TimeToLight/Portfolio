@@ -22,5 +22,45 @@
             <iframe src="https://docs.google.com/gview?url=https://danielrodier.net/Resume_-_Daniel_Rodier.docx&embedded=true"></iframe>
         </div>
     </div>
+    <footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Social Media</h4>
+            <a href="https://twitter.com/TTLCasts" target="_blank" class="footer-link">
+                <span>𝕏</span> TTLCasts
+            </a>
+            <a href="https://instagram.com/dan.TTL" target="_blank" class="footer-link">
+                <span>📷</span> dan.TTL
+            </a>
+        </div>
+
+        <div class="footer-section" style="text-align: right;">
+            <h4>Get in Contact</h4>
+            <div class="footer-link" style="justify-content: flex-end;" onclick="copyEmail()">
+                <span>✉️</span> TTL.Casts@gmail.com
+            </div>
+            <a href="https://linkedin.com/in/DanielRodier" target="_blank" class="footer-link" style="justify-content: flex-end;">
+                <span>💼</span> /DanielRodier
+            </a>
+        </div>
+    </div>
+
+    <div class="copyright-bar">
+        &copy; 2026 Daniel Rodier
+    </div>
+</footer>
+
+<div id="copy-toast">Email address copied!</div>
+
+<script>
+    function copyEmail() {
+        const email = "TTL.Casts@gmail.com";
+        navigator.clipboard.writeText(email).then(() => {
+            const toast = document.getElementById("copy-toast");
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+        });
+    }
+</script>
 </body>
 </html>
