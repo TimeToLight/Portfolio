@@ -35,24 +35,23 @@ nav {
 .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: 0.3s; }
 .nav-links a:hover { color: var(--accent); }
 
-/* --- HERO SPLIT (TIGHTENED & GROWN) --- */
+/* --- HERO SPLIT --- */
 .hero-split {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3rem;
     max-width: 1100px;
-    margin: 3rem auto 3rem auto; /* Reduced margin to remove empty space */
+    margin: 3rem auto 3rem auto;
     padding: 0 2rem;
 }
 
 .profile-pic {
-    width: 210px; /* Increased size per request */
+    width: 210px;
     height: 210px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--accent);
-    box-shadow: 0 0 20px rgba(88, 166, 255, 0.1);
 }
 
 .hero-right h1 {
@@ -114,41 +113,49 @@ nav {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
 }
 
-/* --- SHARED CARD/BUTTON STYLES (Fixes mobile Download button) --- */
-.bar-item, .btn {
-    display: flex;
-    align-items: center;
+/* --- PORTFOLIO ITEMS (Kept separate to avoid breaking tabs) --- */
+.bar-item {
+    display: block;
     background: var(--surface-color);
     border: 1px solid var(--border);
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
     margin-bottom: 1rem;
     border-radius: 8px;
     text-decoration: none;
-    color: var(--text-main);
-    font-weight: 600;
+    color: inherit;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
-.bar-item:hover, .btn:hover {
+.bar-item:hover {
     border-color: var(--accent);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(88, 166, 255, 0.15);
-    color: #fff;
 }
 
-.bar-item h3 { color: var(--accent); margin-bottom: 0.2rem; }
+.bar-item h3 { color: var(--accent); margin-bottom: 0.5rem; }
 
-/* --- RESUME GOOGLE DOC FIX --- */
+/* --- RESUME & BUTTONS (REVERTED) --- */
 .doc-container {
     margin-top: 2rem;
     height: 80vh;
-    min-height: 550px; /* Forces visibility on mobile */
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-    -webkit-overflow-scrolling: touch;
 }
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: 0.3s;
+}
+
+.btn:hover { opacity: 0.9; }
 
 /* --- FOOTER SECTION --- */
 footer {
@@ -222,5 +229,4 @@ footer {
     .footer-grid { grid-template-columns: 1fr; padding: 0 2rem; }
     .footer-column { align-items: center !important; text-align: center; }
     .footer-card { width: 100%; justify-content: center; }
-    .doc-container { height: 65vh; min-height: 450px; }
 }
