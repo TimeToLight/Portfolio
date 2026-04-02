@@ -1,47 +1,74 @@
-:root {
-    --bg-color: #0d1117;
-    --surface-color: #161b22;
-    --text-main: #c9d1d9;
-    --text-muted: #8b949e;
-    --accent: #58a6ff;
-    --border: #30363d;
+/* Updated Footer Layout */
+footer {
+    background: var(--surface-color);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem 1rem;
+    margin-top: 5rem;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
 
-/* Navigation Bar */
-nav { position: fixed; top: 0; width: 100%; background: rgba(13, 17, 23, 0.9); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; backdrop-filter: blur(10px); }
-.logo { font-size: 1.2rem; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: 1px; }
-.nav-links { display: flex; gap: 2rem; }
-.nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-.nav-links a:hover { color: var(--accent); }
+.footer-section h4 {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+}
 
-/* Main Containers */
-.container { padding: 120px 2rem 4rem; max-width: 1100px; margin: 0 auto; }
-h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+.footer-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-main);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
 
-/* Hero Section */
-.hero { display: flex; gap: 3rem; align-items: center; margin-bottom: 4rem; }
-.headshot { width: 300px; height: 300px; border-radius: 50%; border: 2px solid var(--border); object-fit: cover; }
+.footer-link:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+}
 
-/* Work Grid (YouTube) */
-.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; }
-.playlist-card { background: var(--surface-color); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
-.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 4px; }
-.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.copyright-bar {
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
 
-/* Portfolio Hub Items */
-.bar-item { background: var(--surface-color); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; text-decoration: none; display: block; color: inherit; transition: 0.2s; }
-.bar-item:hover { border-color: var(--accent); transform: translateX(5px); }
-.bar-item h3 { color: var(--accent); }
+/* Toast Notification for Email Copy */
+#copy-toast {
+    visibility: hidden;
+    min-width: 200px;
+    background-color: var(--accent);
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 12px;
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-weight: 600;
+}
 
-/* Buttons */
-.btn { display: inline-block; background: var(--accent); color: #fff; padding: 0.7rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; margin: 1rem 0; border: none; cursor: pointer; }
-.btn-secondary { background: #30363d; }
+#copy-toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
 
-/* Doc Viewer */
-.doc-container { width: 100%; height: 900px; background: #fff; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; }
-iframe { width: 100%; height: 100%; border: none; }
-
-footer { text-align: center; padding: 4rem 0; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 4rem; }
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
