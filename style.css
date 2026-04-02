@@ -99,7 +99,45 @@ nav {
     display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
     max-width: 1100px; margin: 0 auto 4rem auto; padding: 0 2rem;
 }
-.video-section h3 { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; border-left: 2px solid var(--accent); padding-left: 10px; margin-bottom: 1rem; }
+/* --- UPDATED PLAYLIST HEADERS --- */
+.video-section h3 { 
+    /* Increased size from 0.9rem to 1.4rem */
+    font-size: 1.4rem; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    border-left: 3px solid var(--accent); /* Slightly thicker line to match size */
+    padding-left: 15px; 
+    margin-bottom: 1.2rem; 
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* --- PLAYLIST FOOTER & DISCREET BUTTON --- */
+.playlist-footer {
+    display: flex;
+    justify-content: flex-end; /* Aligns button to the right */
+    margin-top: 1rem;
+}
+
+.btn-discreet {
+    display: inline-block;
+    padding: 0.4rem 1rem; /* Smaller padding */
+    background: var(--surface-color); /* Matches the card background */
+    color: var(--text-main);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.8rem; /* Smaller text */
+    font-weight: 600;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.btn-discreet:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
 .video-card { background: var(--surface-color); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.3s; }
 .video-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
