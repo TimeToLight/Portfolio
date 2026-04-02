@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Rodier | Portfolio</title>
+    <title>Daniel Rodier | Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,20 +16,49 @@
     </nav>
 
     <div class="container">
-        <header class="hero">
-            <h1>DANIEL RODIER</h1>
-            <p>Broadcast Commentator & Producer</p>
-        </header>
-        
-        <section>
-            <p>Welcome to my professional broadcast and production portfolio. Explore my work in live sports, media server management, and script writing using the navigation above.</p>
+        <section class="hero">
+            <img src="headshot.png" alt="Daniel Rodier" class="headshot">
+            <div class="hero-text">
+                <h1>Daniel Rodier</h1>
+                <p>Broadcast Commentator and Producer</p>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <a href="resume.html" class="btn">View Resume</a>
+                    <a href="portfolio.html" class="btn btn-secondary">Browse Portfolio</a>
+                </div>
+            </div>
         </section>
-    </div>
 
+        <h2 style="margin-bottom: 2rem;">Work Showcases</h2>
+        <div class="work-grid">
+            <div class="playlist-card">
+                <h3>Directed/Produced Broadcasts</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID_1"></iframe>
+                </div>
+            </div>
+            <div class="playlist-card">
+                <h3>Broadcast Commentary</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID_2"></iframe>
+                </div>
+            </div>
+            <div class="playlist-card">
+                <h3>Replay Operation</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID_3"></iframe>
+                </div>
+            </div>
+            <div class="playlist-card">
+                <h3>Graphics Operation</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID_4"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer>
         <div class="footer-grid">
-            <div></div>
-            <div class="footer-column socials">
+            <div></div> <div class="footer-column socials">
                 <h4>Social Media</h4>
                 <a href="https://twitter.com/TTLCasts" target="_blank" class="footer-card">
                     <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -41,6 +69,7 @@
                     dan.TTL
                 </a>
             </div>
+            
             <div class="footer-column contact">
                 <h4>Get in Contact</h4>
                 <div class="footer-card" onclick="copyEmail()">
@@ -52,11 +81,13 @@
                     /DanielRodier
                 </a>
             </div>
-            <div></div>
-        </div>
+            
+            <div></div> </div>
         <div class="copyright">&copy; 2026 Daniel Rodier</div>
     </footer>
+    
     <div id="copy-toast">Email address copied!</div>
+    
     <script>
         function copyEmail() {
             navigator.clipboard.writeText("TTL.Casts@gmail.com").then(() => {
