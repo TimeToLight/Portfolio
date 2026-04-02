@@ -18,14 +18,14 @@
     <div class="container">
         <div id="list-view">
             <a href="portfolio.html" style="color: var(--accent); text-decoration: none; font-weight: bold;">&larr; Back to All Categories</a>
-            <h1 id="cat-title" style="margin-top: 1rem; text-transform: capitalize;"></h1>
+            <h1 id="cat-title" style="margin-top: 1rem;"></h1>
             <div id="scripts-list"></div>
         </div>
 
         <div id="detail-view" style="display:none;">
             <button class="btn btn-secondary" onclick="backToList()">&larr; Back to List</button>
-            <h1 id="script-title"></h1>
-            <a id="download-link" href="#" download class="btn">Download .DOCX</a>
+            <h1 id="script-title" style="margin-top:1rem;"></h1>
+            <a id="download-link" href="#" download class="btn">Download File</a>
             <div class="doc-container">
                 <iframe id="preview-frame" src=""></iframe>
             </div>
@@ -52,25 +52,24 @@
         const cat = params.get('cat');
 
         function init() {
+            // Check if category exists in our data
             if (cat && scriptData[cat]) {
-                document.getElementById('cat-title').innerText = cat + " Scripts";
+                const titles = { 'PSA': 'Public Service Announcements', 'Ad': '30-Second Advertisements', 'News': 'News Packages', 'Show': 'Student Created Shows' };
+                document.getElementById('cat-title').innerText = titles[cat] || cat;
+                
                 const list = document.getElementById('scripts-list');
-                list.innerHTML = ''; // Clear any existing items
+                list.innerHTML = ''; 
 
                 scriptData[cat].forEach(s => {
                     const item = document.createElement('div');
                     item.className = 'bar-item';
-                    item.innerHTML = `<h3>${s.title}</h3><p>Click to view script</p>`;
-                    
-                    // The fix: explicitly handle the click to prevent default routing
-                    item.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        showDetail(s);
-                    });
+                    item.innerHTML = `<h3>${s.title}</h3><p>View Script Preview</p>`;
+                    item.onclick = () => showDetail(s);
                     list.appendChild(item);
                 });
             } else {
-                // If no category found, go back to portfolio hub
+                // FAILSAFE: If the page loads but no category is found, go to portfolio hub
+                console.log("No category found, redirecting to portfolio hub...");
                 window.location.href = 'portfolio.html';
             }
         }
@@ -81,8 +80,8 @@
             document.getElementById('script-title').innerText = s.title;
             document.getElementById('download-link').href = s.file;
             
-            // Use the full domain to ensure Google Viewer can find the file
-            const fileUrl = `https://danielrodier.net/${s.file}`;
+            // Generate full URL for Google Viewer
+            const fileUrl = window.location.origin + '/' + s.file;
             document.getElementById('preview-frame').src = `https://docs.google.com/gview?url=${fileUrl}&embedded=true`;
             window.scrollTo(0,0);
         }
@@ -90,7 +89,7 @@
         function backToList() {
             document.getElementById('list-view').style.display = 'block';
             document.getElementById('detail-view').style.display = 'none';
-            document.getElementById('preview-frame').src = ""; // Clear iframe to stop loading
+            document.getElementById('preview-frame').src = ""; 
             window.scrollTo(0,0);
         }
 
