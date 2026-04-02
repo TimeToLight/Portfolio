@@ -1,74 +1,106 @@
-/* Updated Footer Layout */
+/* Footer Base */
 footer {
-    background: var(--surface-color);
+    background: var(--bg-color);
     border-top: 1px solid var(--border);
-    padding: 3rem 2rem 1rem;
+    padding: 4rem 0 1.5rem;
     margin-top: 5rem;
 }
 
-.footer-content {
-    max-width: 1100px;
-    margin: 0 auto;
+/* Three-column grid to handle the midway alignment */
+.footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 2fr 1fr; /* Empty outer columns create the 'midway' look */
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
     gap: 2rem;
-    margin-bottom: 2rem;
 }
 
-.footer-section h4 {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 1rem;
+.footer-column h4 {
+    color: var(--text-main);
+    font-size: 1.1rem; /* Slightly bigger as requested */
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
-.footer-link {
+/* The Link/Contact Box (Matching .bar-item style) */
+.footer-card {
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: var(--text-main);
+    gap: 12px;
+    padding: 0.8rem 1rem;
+    background: var(--surface-color);
+    border: 1px solid var(--border);
+    border-radius: 6px;
     text-decoration: none;
-    margin-bottom: 0.5rem;
-    transition: 0.2s;
-    cursor: pointer;
-    font-size: 0.95rem;
-}
-
-.footer-link:hover {
-    color: var(--accent);
-    transform: translateX(5px);
-}
-
-.copyright-bar {
-    text-align: center;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
     color: var(--text-muted);
-    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
+    cursor: pointer; /* Ensures email gets hyperlink feedback */
 }
 
-/* Toast Notification for Email Copy */
+/* Hover "Illumination" Effect */
+.footer-card:hover {
+    border-color: var(--accent);
+    color: var(--text-main);
+    transform: translateX(5px);
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+}
+
+/* Grayscale Logos */
+.footer-card svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.footer-card:hover svg {
+    filter: grayscale(0%);
+}
+
+/* Copyright at the very bottom */
+.copyright {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    width: 100%;
+}
+
+/* Middle of screen Popup */
 #copy-toast {
     visibility: hidden;
-    min-width: 200px;
     background-color: var(--accent);
-    color: #fff;
+    color: white;
     text-align: center;
-    border-radius: 4px;
-    padding: 12px;
+    border-radius: 8px;
+    padding: 20px 40px;
     position: fixed;
-    z-index: 2000;
+    z-index: 9999;
     left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
-    font-weight: 600;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 #copy-toast.show {
     visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadeInOut 2.5s ease-in-out;
 }
 
-@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -40%); }
+    15% { opacity: 1; transform: translate(-50%, -50%); }
+    85% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -60%); }
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr; padding: 0 2rem; }
+    .footer-column { text-align: center; }
+    .footer-card { justify-content: center; }
+}
