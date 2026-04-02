@@ -42,11 +42,11 @@ nav {
     padding: 0 2rem;   
 }
 
-/* --- FLEX HEADER (Title & Button Side-by-Side) --- */
+/* --- FLEX HEADER --- */
 .page-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Keeps button aligned with bottom of text */
+    align-items: flex-end;
     margin-bottom: 1.5rem;
     gap: 20px;
 }
@@ -63,7 +63,7 @@ nav {
     border-radius: 6px;
     font-weight: 600;
     transition: 0.3s;
-    white-space: nowrap; /* Prevents button text from wrapping */
+    white-space: nowrap;
 }
 
 .btn:hover { opacity: 0.9; transform: translateY(-1px); }
@@ -71,14 +71,13 @@ nav {
 /* --- DOC CONTAINER & IFRAME FIX --- */
 .doc-container {
     width: 100%;
-    height: 85vh; /* Large viewing area */
+    height: 85vh;
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-    background: #fff; /* White background for the outline */
+    background: #fff;
 }
 
-/* This forces the doc to fill the white outline */
 .doc-container iframe {
     width: 100% !important;
     height: 100% !important;
@@ -86,7 +85,7 @@ nav {
     border: none;
 }
 
-/* --- HERO SPLIT (HOME) --- */
+/* --- HERO SPLIT --- */
 .hero-split {
     display: flex; align-items: center; justify-content: center; gap: 3rem;
     max-width: 1100px; margin: 3rem auto; padding: 0 2rem;
@@ -95,7 +94,7 @@ nav {
 .hero-right h1 { font-size: 3.5rem; color: #fff; line-height: 1.1; }
 .hero-right h2 { font-size: 1.3rem; color: var(--accent); font-weight: 400; text-transform: uppercase; letter-spacing: 3px; }
 
-/* --- 4-SQUARE GRID --- */
+/* --- GRID & TILES --- */
 .grid-container {
     display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
     max-width: 1100px; margin: 0 auto 4rem auto; padding: 0 2rem;
@@ -106,7 +105,6 @@ nav {
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-/* --- PORTFOLIO TILES --- */
 .bar-item {
     display: block; background: var(--surface-color); border: 1px solid var(--border);
     padding: 1.5rem; margin-bottom: 1.2rem; border-radius: 8px; text-decoration: none; color: inherit; transition: 0.3s;
@@ -115,15 +113,51 @@ nav {
 .bar-item h3 { color: var(--accent); margin-bottom: 0.5rem; }
 
 /* --- FOOTER --- */
-footer { background: var(--bg-color); border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 4rem; }
+footer { background: var(--bg-color); border-top: 1px solid var(--border); padding: 3rem 0 1.5rem; margin-top: 4rem; position: relative; }
 .footer-grid { display: grid; grid-template-columns: 1fr 2fr 2fr 1fr; max-width: 1200px; margin: 0 auto 2rem auto; gap: 1.5rem; }
 .footer-column { display: flex; flex-direction: column; }
 .footer-column.socials { align-items: flex-end; }
 .footer-column.contact { align-items: flex-start; }
-.footer-card { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--surface-color); border: 1px solid var(--border); border-radius: 8px; text-decoration: none !important; color: var(--text-main) !important; margin-bottom: 0.8rem; transition: 0.3s; width: fit-content; min-width: 240px; }
+
+/* UPDATED FOOTER CARD FOR EMAIL */
+.footer-card { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    padding: 12px 20px; 
+    background: var(--surface-color); 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    text-decoration: none !important; 
+    color: var(--text-main) !important; 
+    margin-bottom: 0.8rem; 
+    transition: 0.3s; 
+    width: fit-content; 
+    min-width: 240px; 
+    cursor: pointer; /* FIX: Shows the hand icon */
+}
+
 .footer-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(88, 166, 255, 0.15); }
 .footer-card svg { width: 20px; height: 20px; fill: currentColor; opacity: 0.6; }
+
 .copyright { text-align: center; color: var(--text-muted); font-size: 0.8rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+
+/* --- COPY POPUP FIX --- */
+#copy-message {
+    position: fixed; /* FIX: Keeps it on screen regardless of footer */
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 9999; /* FIX: Sits on top of everything */
+    display: none; /* Controlled by JS */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
 
 /* --- MOBILE --- */
 @media (max-width: 850px) {
