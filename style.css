@@ -1,25 +1,84 @@
-/* Footer Base */
+:root {
+    --bg-color: #0d1117;
+    --surface-color: #161b22;
+    --text-main: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --border: #30363d;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid var(--border);
+    background: rgba(13, 17, 23, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo { font-weight: 800; font-size: 1.2rem; color: var(--text-main); text-decoration: none; letter-spacing: 2px; }
+.nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+
+/* --- CONTAINERS & HEADERS --- */
+.container { max-width: 900px; margin: 4rem auto; padding: 0 2rem; }
+
+.hero { text-align: center; margin-bottom: 4rem; }
+.hero h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #fff; }
+.hero p { color: var(--text-muted); font-size: 1.2rem; }
+
+/* --- PORTFOLIO / SCRIPT ITEMS --- */
+.bar-item {
+    display: block;
+    background: var(--surface-color);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.bar-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(88, 166, 255, 0.1);
+}
+
+.bar-item h3 { color: var(--accent); margin-bottom: 0.5rem; }
+
+/* --- FOOTER SECTION --- */
 footer {
     background: var(--bg-color);
     border-top: 1px solid var(--border);
-    padding: 4rem 0 1.5rem;
-    margin-top: 6rem;
+    padding: 3rem 0 1.5rem; /* Tightened padding */
+    margin-top: 5rem;
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr;
     max-width: 1200px;
-    margin: 0 auto 3rem auto;
-    gap: 1rem;
+    margin: 0 auto 2rem auto;
+    gap: 1.5rem;
 }
 
-.footer-column { 
-    display: flex; 
-    flex-direction: column; 
-}
-
-/* The Midway Alignment */
+.footer-column { display: flex; flex-direction: column; }
 .footer-column.socials { align-items: flex-end; }
 .footer-column.contact { align-items: flex-start; }
 
@@ -30,84 +89,109 @@ footer {
     font-weight: 600;
 }
 
+/* Footer Cards - Styled like Portfolio Items */
 .footer-card {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 16px;
+    padding: 12px 20px;
     background: var(--surface-color);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    text-decoration: none;
-    color: var(--text-muted);
+    border-radius: 8px;
+    
+    /* Removes all blue link styling */
+    text-decoration: none !important; 
+    color: var(--text-main) !important;
+    
     margin-bottom: 0.8rem;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     cursor: pointer !important; 
     width: fit-content;
-    min-width: 210px;
+    min-width: 240px;
 }
 
 .footer-card:hover {
     border-color: var(--accent);
-    color: var(--text-main);
     background: #1c2128;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    /* The Script Card illumination glow */
+    box-shadow: 0 5px 15px rgba(88, 166, 255, 0.15); 
 }
 
-/* Locked-in SVG Sizes */
+/* Icon Sizing Control */
 .footer-card svg {
-    width: 18px !important;
-    height: 18px !important;
+    width: 20px !important;
+    height: 20px !important;
     flex-shrink: 0;
     fill: currentColor;
     filter: grayscale(100%);
-    opacity: 0.7;
+    opacity: 0.6;
     transition: 0.3s;
 }
 
 .footer-card:hover svg { 
     filter: grayscale(0%); 
     opacity: 1; 
+    color: var(--accent);
 }
 
 .copyright {
     text-align: center;
     color: var(--text-muted);
     font-size: 0.8rem;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border);
 }
 
-/* Middle Screen Toast */
+/* --- TOAST NOTIFICATION (Email Copy Popup) --- */
 #copy-toast {
     visibility: hidden;
-    background-color: var(--accent);
-    color: white;
+    min-width: 200px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--accent);
+    color: var(--text-main);
     text-align: center;
-    border-radius: 8px;
-    padding: 20px 40px;
+    border-radius: 50px; /* Capsule look */
+    padding: 12px 24px;
     position: fixed;
     z-index: 9999;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    bottom: 40px; 
+    transform: translateX(-50%);
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.4s, bottom 0.4s ease-out;
 }
 
 #copy-toast.show {
     visibility: visible;
-    animation: fadeInOut 2.5s ease-in-out;
+    opacity: 1;
+    bottom: 60px; /* Slides up into view */
 }
 
-@keyframes fadeInOut {
-    0% { opacity: 0; transform: translate(-50%, -40%); }
-    15% { opacity: 1; transform: translate(-50%, -50%); }
-    85% { opacity: 1; transform: translate(-50%, -50%); }
-    100% { opacity: 0; transform: translate(-50%, -60%); }
+/* --- OTHER UTILITIES --- */
+.doc-container { margin-top: 2rem; height: 80vh; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+iframe { width: 100%; height: 100%; border: none; }
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
 }
 
-/* Mobile Adjustment */
+.btn:hover { opacity: 0.9; }
+.btn-secondary { background: var(--surface-color); border: 1px solid var(--border); color: var(--text-main); }
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     .footer-grid { grid-template-columns: 1fr; padding: 0 2rem; }
     .footer-column { align-items: center !important; text-align: center; }
