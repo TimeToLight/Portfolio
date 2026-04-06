@@ -30,14 +30,12 @@
         <a id="download-link" href="#" download class="btn">Download File</a>
     </div>
 
-    <div id="script-narrative" class="script-context" style="margin-bottom: 2rem; border-left: 2px solid var(--accent); padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 20px;">
-        
+    <div id="script-narrative" class="script-context">
         <div>
             <strong style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Project Overview</strong>
-            <p id="script-description" style="font-size: 1rem; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 800px;"></p>
+            <p id="script-description"></p>
         </div>
-
-        <a id="watch-link" href="#" target="_blank" class="watch-btn" style="display: none; white-space: nowrap;">Watch Video</a>
+        <a id="watch-link" href="#" target="_blank" class="watch-btn" style="display: none;">Watch Video</a>
     </div>
 
     <div class="doc-container">
@@ -119,26 +117,33 @@
         }
 
         function showDetail(s) {
-            document.getElementById('list-view').style.display = 'none';
-            document.getElementById('detail-view').style.display = 'block';
-            
-            document.getElementById('script-title').innerText = s.title;
-            document.getElementById('download-link').href = s.file;
-            document.getElementById('script-description').innerText = s.desc || "Technical breakdown for this script is currently being updated.";
+    document.getElementById('list-view').style.display = 'none';
+    document.getElementById('detail-view').style.display = 'block';
+    
+    document.getElementById('script-title').innerText = s.title;
+    document.getElementById('download-link').href = s.file;
+    
+    // Set the description text
+    const descText = document.getElementById('script-description');
+    descText.innerText = s.desc || "Technical breakdown for this script is currently being updated.";
 
-            // NEW: Check for video URL and toggle the Watch button
-            const watchLink = document.getElementById('watch-link');
-            if (s.videoUrl) {
-                watchLink.href = s.videoUrl;
-                watchLink.style.display = 'inline-block'; // Show the button
-            } else {
-                watchLink.style.display = 'none'; // Hide if no video
-            }
+    const watchLink = document.getElementById('watch-link');
+    const narrativeBox = document.getElementById('script-narrative');
 
-            const fileUrl = window.location.origin + '/' + s.file;
-            document.getElementById('preview-frame').src = `https://docs.google.com/gview?url=${fileUrl}&embedded=true`;
-            window.scrollTo(0,0);
-        }
+    // Toggle the "Watch" button and the layout class
+    if (s.videoUrl) {
+        watchLink.href = s.videoUrl;
+        watchLink.style.display = 'inline-block';
+        narrativeBox.classList.add('has-video'); // Apply the restriction
+    } else {
+        watchLink.style.display = 'none';
+        narrativeBox.classList.remove('has-video'); // Remove the restriction
+    }
+
+    const fileUrl = window.location.origin + '/' + s.file;
+    document.getElementById('preview-frame').src = `https://docs.google.com/gview?url=${fileUrl}&embedded=true`;
+    window.scrollTo(0,0);
+}
 
         function backToList() {
             document.getElementById('list-view').style.display = 'block';
