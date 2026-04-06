@@ -30,8 +30,6 @@ nav {
     top: 0;
     z-index: 1000;
 }
-
-.logo { font-weight: 800; font-size: 1.2rem; color: var(--text-main); text-decoration: none; letter-spacing: 2px; }
 .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: 0.3s; }
 .nav-links a:hover { color: var(--accent); }
 
@@ -359,4 +357,42 @@ footer {
 }
 #script-description {
     white-space: pre-wrap; /* This tells the browser to respect line breaks and wrap text normally */
+}
+/* --- NEW IMAGE LOGO STYLING --- */
+
+/* The link container (Flex ensures vertical centering) */
+.logo-image-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* The actual PNG image */
+.logo-graphic {
+    /* Hard-coding the height ensures the nav bar doesn't grow or shrink */
+    height: 32px; 
+    
+    /* Let the browser figure out the width based on your new "Trimmed" file */
+    width: auto; 
+    
+    /* Add a tiny bit of padding if the letters feel too close to the nav edges */
+    padding: 5px 0; 
+    
+    transition: 0.3s ease;
+    display: block;
+}
+
+/* --- THE HOVER/COLOR CORRECTION PART --- */
+
+/* When hovering over the link, apply an effect to the image */
+.logo-image-link:hover .logo-graphic {
+    /* If your Photoshop color (`#c9d1d9`) is too dim, we can 
+       boost it to pure white with a "filter" on hover. */
+    filter: brightness(0) invert(1); /* Turns any color to pure white */
+    
+    /* Add your signature glowing blue effect on hover */
+    drop-shadow(0 0 10px rgba(88, 166, 255, 0.6));
+    
+    transform: translateY(-1px); /* Subtle lift on hover */
 }
