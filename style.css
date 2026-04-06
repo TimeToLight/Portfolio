@@ -42,7 +42,33 @@ nav {
     padding: 0 2rem;   
 }
 
-/* --- FLEX HEADER --- */
+/* --- STACK CONTAINER (For full-width sections above grid) --- */
+.stack-container {
+    max-width: 1100px; /* Matches grid exactly */
+    margin: 0 auto 4rem auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Spacing between the 3 new sections */
+}
+
+.full-width-section { width: 100%; }
+
+/* Flex header keeps the h3 style but aligns button to the right */
+.flex-header-tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.2rem;
+    gap: 20px;
+}
+
+.flex-header-tab h3 {
+    margin-bottom: 0 !important; /* Overrides standard h3 margin for flex alignment */
+    flex: 1; /* Allows text to wrap if it's super long */
+}
+
+/* --- FLEX HEADER (Standard Pages) --- */
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -55,7 +81,9 @@ nav {
 
 /* --- BUTTON STYLE --- */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.6rem 1.5rem;
     background: var(--accent);
     color: #fff;
@@ -85,6 +113,13 @@ nav {
     border: none;
 }
 
+/* Exact US Letter proportion for Resume page to eliminate scroll */
+.doc-container-letter {
+    aspect-ratio: 8.5 / 11;
+    height: auto; 
+    max-height: none; /* Overrides the 85vh limit if viewing on ultra-wide screens */
+}
+
 /* --- HERO SPLIT --- */
 .hero-split {
     display: flex; align-items: center; justify-content: center; gap: 3rem;
@@ -101,11 +136,10 @@ nav {
 }
 /* --- UPDATED PLAYLIST HEADERS --- */
 .video-section h3 { 
-    /* Increased size from 0.9rem to 1.4rem */
     font-size: 1.4rem; 
     color: var(--text-muted); 
     text-transform: uppercase; 
-    border-left: 3px solid var(--accent); /* Slightly thicker line to match size */
+    border-left: 3px solid var(--accent); 
     padding-left: 15px; 
     margin-bottom: 1.2rem; 
     font-weight: 700;
@@ -115,19 +149,19 @@ nav {
 /* --- PLAYLIST FOOTER & DISCREET BUTTON --- */
 .playlist-footer {
     display: flex;
-    justify-content: flex-end; /* Aligns button to the right */
+    justify-content: flex-end; 
     margin-top: 1rem;
 }
 
 .btn-discreet {
     display: inline-block;
-    padding: 0.4rem 1rem; /* Smaller padding */
-    background: var(--surface-color); /* Matches the card background */
+    padding: 0.4rem 1rem; 
+    background: var(--surface-color); 
     color: var(--text-main);
     text-decoration: none;
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-size: 0.8rem; /* Smaller text */
+    font-size: 0.8rem; 
     font-weight: 600;
     transition: 0.3s;
     white-space: nowrap;
@@ -171,7 +205,6 @@ footer {
 .footer-column.socials { align-items: flex-end; }
 .footer-column.contact { align-items: flex-start; }
 
-/* Thin-Bold Blue Headers */
 .footer-column h4 {
     color: var(--accent);
     text-transform: uppercase;
@@ -239,7 +272,7 @@ footer {
 
 /* --- MOBILE --- */
 @media (max-width: 850px) {
-    .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .page-header, .flex-header-tab { flex-direction: column; align-items: flex-start; gap: 15px; }
     .hero-split { flex-direction: column; text-align: center; }
     .grid-container { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; padding: 0 2rem; }
