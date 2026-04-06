@@ -29,6 +29,8 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    height: 70px;       /* Set a fixed height for the bar for consistency */
+    padding: 0 5%;
 }
 .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: 0.3s; }
 .nav-links a:hover { color: var(--accent); }
@@ -370,17 +372,19 @@ footer {
 
 /* The actual PNG image */
 .logo-graphic {
-    /* Hard-coding the height ensures the nav bar doesn't grow or shrink */
-    height: 32px; 
+    /* Adjust this number (30px to 45px) until it looks right to you */
+    height: 38px; 
     
-    /* Let the browser figure out the width based on your new "Trimmed" file */
+    /* Crucial: ensures it doesn't stay at 1107px wide */
     width: auto; 
     
-    /* Add a tiny bit of padding if the letters feel too close to the nav edges */
-    padding: 5px 0; 
+    /* Helps with vertical alignment in the flexbox nav */
+    display: block; 
+    
+    /* Ensures high-DPI images stay crisp when downscaled */
+    image-rendering: -webkit-optimize-contrast; 
     
     transition: 0.3s ease;
-    display: block;
 }
 
 /* --- THE HOVER/COLOR CORRECTION PART --- */
