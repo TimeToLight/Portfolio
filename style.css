@@ -293,3 +293,27 @@ footer {
     letter-spacing: normal;
     margin-bottom: 0;
 }
+/* --- NARRATIVE BIT STYLING --- */
+.script-context {
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem; /* Matches bar-item horizontal padding */
+    margin-top: -1.2rem; /* Pulls it up to "attach" to the bar-item above */
+    margin-bottom: 2rem;
+    border-left: 1px solid var(--border);
+    margin-left: 10px; /* Slight indent to show it's a sub-detail */
+}
+
+.script-context p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 800px;
+}
+
+.script-context strong {
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 5px;
+}
