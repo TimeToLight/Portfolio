@@ -310,3 +310,24 @@ footer {
     justify-content: space-between;
     align-items: center;
 }
+/* --- WATCH VIDEO BUTTON FOR NARRATIVE BAR --- */
+.watch-btn {
+    background: var(--surface-color); /* Matches the background */
+    color: var(--accent) !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    border: 1px solid var(--accent); /* Outline style */
+    text-decoration: none;
+}
+
+.watch-btn:hover {
+    background: var(--accent); 
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
+}
