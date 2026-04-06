@@ -114,7 +114,7 @@ nav {
     border: none;
     
     /* This scales the document up. Adjust 1.2 (120%) to find the sweet spot */
-    transform: scale(1.1); 
+    transform: scale(1.0); 
     transform-origin: top left; /* Keeps the top-left corner anchored */
 }
 
