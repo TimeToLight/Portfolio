@@ -38,43 +38,89 @@
 
     <script>
         const scriptData = {
-            'PSA': [
-                { title: 'NTSB: No Texting', file: 'NTSB_No_Texting_-_PSA.docx' },
-                { title: 'NSA: Personal Security', file: 'NSA_Security.docx' }
-            ],
-            'Ad': [
-                { title: 'SIUE Athletic Broadcasting Employment', file: 'SIUE_Athletic_Broadcasting.docx' },
-                { title: 'HTA: Newlyweds', file: 'Newlyweds_-_30_Second_Ad.docx' },
-                { title: 'HTA: College Students', file: 'College_-_30_Second_Ad.docx' },
-                { title: 'HTA: Parents with Kids', file: 'Parents_with_Kids_-_30_Second_Ad.docx' },
-                { title: 'HTA: Retirees', file: 'Retirees_-_30_Second_Ad.docx' }
-            ],
-            'News': [
-                { title: 'WSIE: Radio Modernization', file: 'WSIE_News_Package.doc' },
-                { title: 'NACE: Starleague Finals', file: 'NACE_News_Package.docx' },
-                { title: 'Throwback Through the 80s', file: '80s_Throwback.doc' }]
-        };
+    'PSA': [
+        { 
+            title: 'NTSB: No Texting', 
+            file: 'NTSB_No_Texting_-_PSA.docx',
+            desc: 'A high-impact 30-second PSA focused on distracted driving safety standards, utilizing tight time-coding for broadcast delivery.'
+        },
+        { 
+            title: 'NSA: Personal Security', 
+            file: 'NSA_Security.docx',
+            desc: 'Developed to highlight digital privacy and personal security measures in a concise, informative public service format.'
+        }
+    ],
+    'Ad': [
+        { 
+            title: 'SIUE Athletic Broadcasting Employment', 
+            file: 'SIUE_Athletic_Broadcasting.docx', 
+            desc: 'Recruitment spot designed to attract student workers by highlighting hands-on experience with industry-standard TriCaster systems.'
+        },
+        { 
+            title: 'HTA: Newlyweds', 
+            file: 'Newlyweds_-_30_Second_Ad.docx',
+            desc: 'Targeted advertisement focusing on lifestyle-specific messaging for young couples and home-related services.'
+        },
+        { title: 'HTA: College Students', file: 'College_-_30_Second_Ad.docx', desc: 'Commercial script tailored for the university demographic with high-energy pacing.' },
+        { title: 'HTA: Parents with Kids', file: 'Parents_with_Kids_-_30_Second_Ad.docx', desc: 'Focuses on family-oriented reliability and safety messaging.' },
+        { title: 'HTA: Retirees', file: 'Retirees_-_30_Second_Ad.docx', desc: 'Designed for a slower tempo with clear, value-driven communication for older audiences.' }
+    ],
+    'News': [
+        { 
+            title: 'WSIE: Radio Modernization', 
+            file: 'WSIE_News_Package.doc',
+            desc: 'A comprehensive news package covering the technical and operational upgrades at SIUE’s WSIE radio station.'
+        },
+        { 
+            title: 'NACE: Starleague Finals', 
+            file: 'NACE_News_Package.docx',
+            desc: 'On-site reporting script covering the high-stakes environment of collegiate esports championship finals.'
+        },
+        { 
+            title: 'Throwback Through the 80s', 
+            file: '80s_Throwback.doc',
+            desc: 'A curated broadcast segment exploring cultural shifts and media history throughout the 1980s.'
+        }
+    ]
+};
 
         const params = new URLSearchParams(window.location.search);
         const cat = params.get('cat');
 
         function init() {
-            if (cat && scriptData[cat]) {
-                const titles = { 'PSA': 'Public Service Announcements', 'Ad': '30-Second Advertisements', 'News': 'News Packages', 'Show': 'Student Created Shows' };
-                document.getElementById('cat-title').innerText = titles[cat] || cat;
-                const list = document.getElementById('scripts-list');
-                list.innerHTML = ''; 
-                scriptData[cat].forEach(s => {
-                    const item = document.createElement('div');
-                    item.className = 'bar-item';
-                    item.innerHTML = `<h3>${s.title}</h3><p>View Script Preview</p>`;
-                    item.onclick = () => showDetail(s);
-                    list.appendChild(item);
-                });
-            } else {
-                window.location.href = 'portfolio.html';
-            }
-        }
+    if (cat && scriptData[cat]) {
+        const titles = { 'PSA': 'Public Service Announcements', 'Ad': '30-Second Advertisements', 'News': 'News Packages', 'Show': 'Student Created Shows' };
+        document.getElementById('cat-title').innerText = titles[cat] || cat;
+        
+        const list = document.getElementById('scripts-list');
+        list.innerHTML = ''; 
+
+        scriptData[cat].forEach(s => {
+            // Create a wrapper for the script and its description
+            const entry = document.createElement('div');
+            entry.className = 'script-entry';
+            entry.style.marginBottom = "2rem"; // Space between different scripts
+
+            entry.innerHTML = `
+                <div class="bar-item" style="margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
+                    <h3>${s.title}</h3>
+                    <p>View Script Preview</p>
+                </div>
+                <div class="script-context" style="padding: 1.5rem; background: var(--surface-color); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
+                    <strong style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Project Overview</strong>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;">${s.desc || "Description coming soon."}</p>
+                </div>
+            `;
+
+            // Make only the top bar clickable to open the viewer
+            entry.querySelector('.bar-item').onclick = () => showDetail(s);
+            
+            list.appendChild(entry);
+        });
+    } else {
+        window.location.href = 'portfolio.html';
+    }
+}
 
         function showDetail(s) {
             document.getElementById('list-view').style.display = 'none';
