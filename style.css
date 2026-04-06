@@ -331,3 +331,6 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
 }
+#script-description {
+    white-space: pre-wrap; /* This tells the browser to respect line breaks and wrap text normally */
+}
