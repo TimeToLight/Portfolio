@@ -107,10 +107,15 @@ nav {
 }
 
 .doc-container iframe {
-    width: 100% !important;
-    height: 100% !important;
+    /* We make the iframe larger than the box, then scale it */
+    width: 120% !important; 
+    height: 120% !important;
     display: block;
     border: none;
+    
+    /* This scales the document up. Adjust 1.2 (120%) to find the sweet spot */
+    transform: scale(1.2); 
+    transform-origin: top left; /* Keeps the top-left corner anchored */
 }
 
 /* Exact US Letter proportion for Resume page to eliminate scroll */
