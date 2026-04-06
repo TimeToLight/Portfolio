@@ -23,17 +23,22 @@
         </div>
 
         <div id="detail-view" style="display:none;">
-            <button class="btn" style="background: var(--surface-color); border: 1px solid var(--border); margin-bottom: 2rem;" onclick="backToList()">&larr; Back to List</button>
-            
-            <div class="page-header">
-                <h1 id="script-title"></h1>
-                <a id="download-link" href="#" download class="btn">Download File</a>
-            </div>
+    <button class="btn" style="background: var(--surface-color); border: 1px solid var(--border); margin-bottom: 2rem;" onclick="backToList()">&larr; Back to List</button>
+    
+    <div class="page-header">
+        <h1 id="script-title"></h1>
+        <a id="download-link" href="#" download class="btn">Download File</a>
+    </div>
 
-            <div class="doc-container">
-                <iframe id="preview-frame" src=""></iframe>
-            </div>
-        </div>
+    <div id="script-narrative" class="script-context" style="margin-bottom: 2rem; border-left: 2px solid var(--accent); padding-left: 1.5rem;">
+        <strong style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Project Overview</strong>
+        <p id="script-description" style="font-size: 1rem; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 900px;"></p>
+    </div>
+
+    <div class="doc-container">
+        <iframe id="preview-frame" src=""></iframe>
+    </div>
+</div>
     </div>
 
     <script>
@@ -91,31 +96,16 @@
     if (cat && scriptData[cat]) {
         const titles = { 'PSA': 'Public Service Announcements', 'Ad': '30-Second Advertisements', 'News': 'News Packages', 'Show': 'Student Created Shows' };
         document.getElementById('cat-title').innerText = titles[cat] || cat;
-        
         const list = document.getElementById('scripts-list');
         list.innerHTML = ''; 
-
+        
         scriptData[cat].forEach(s => {
-            // Create a wrapper for the script and its description
-            const entry = document.createElement('div');
-            entry.className = 'script-entry';
-            entry.style.marginBottom = "2rem"; // Space between different scripts
-
-            entry.innerHTML = `
-                <div class="bar-item" style="margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
-                    <h3>${s.title}</h3>
-                    <p>View Script Preview</p>
-                </div>
-                <div class="script-context" style="padding: 1.5rem; background: var(--surface-color); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px;">
-                    <strong style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Project Overview</strong>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;">${s.desc || "Description coming soon."}</p>
-                </div>
-            `;
-
-            // Make only the top bar clickable to open the viewer
-            entry.querySelector('.bar-item').onclick = () => showDetail(s);
-            
-            list.appendChild(entry);
+            const item = document.createElement('div');
+            item.className = 'bar-item';
+            // Cleaned up text: No "View Script" subtext needed here anymore
+            item.innerHTML = `<h3>${s.title}</h3>`; 
+            item.onclick = () => showDetail(s);
+            list.appendChild(item);
         });
     } else {
         window.location.href = 'portfolio.html';
@@ -123,16 +113,19 @@
 }
 
         function showDetail(s) {
-            document.getElementById('list-view').style.display = 'none';
-            document.getElementById('detail-view').style.display = 'block';
-            document.getElementById('script-title').innerText = s.title;
-            document.getElementById('download-link').href = s.file;
+    document.getElementById('list-view').style.display = 'none';
+    document.getElementById('detail-view').style.display = 'block';
+    
+    document.getElementById('script-title').innerText = s.title;
+    document.getElementById('download-link').href = s.file;
+    
+    // Inject the Narrative Bit
+    document.getElementById('script-description').innerText = s.desc || "Technical breakdown for this script is currently being updated.";
 
-            // Using the Google Viewer URL structure
-            const fileUrl = window.location.origin + '/' + s.file;
-            document.getElementById('preview-frame').src = `https://docs.google.com/gview?url=${fileUrl}&embedded=true`;
-            window.scrollTo(0,0);
-        }
+    const fileUrl = window.location.origin + '/' + s.file;
+    document.getElementById('preview-frame').src = `https://docs.google.com/gview?url=${fileUrl}&embedded=true`;
+    window.scrollTo(0,0);
+}
 
         function backToList() {
             document.getElementById('list-view').style.display = 'block';
