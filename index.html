@@ -26,6 +26,36 @@
         </div>
     </div>
 
+    <div class="stack-container">
+        
+        <div class="video-section full-width-section">
+            <h3>My Cinematic Reel</h3>
+            <div class="video-card">
+                <div class="video-container">
+                    <iframe src="https://youtu.be/YjRyBUsxqHw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section full-width-section">
+            <div class="flex-header-tab">
+                <h3>Resume</h3>
+                <a href="Resume_-_Daniel_Rodier.docx" class="btn" download>Download DOCX</a>
+            </div>
+            <div class="doc-container doc-container-letter">
+                <iframe src="https://docs.google.com/gview?url=https://danielrodier.net/Resume_-_Daniel_Rodier.docx&embedded=true"></iframe>
+            </div>
+        </div>
+
+        <div class="video-section full-width-section">
+            <div class="flex-header-tab">
+                <h3>Public Service Announcements, News Packages, and 30-Second Adverts</h3>
+                <a href="portfolio.html" class="btn">View Scripts</a>
+            </div>
+        </div>
+
+    </div>
+
     <div class="grid-container">
         <div class="video-section">
             <h3>Directed/Produced Broadcasts</h3>
@@ -35,10 +65,10 @@
                 </div>
             </div>
             <div class="playlist-footer">
-        <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWFtFOH_aKoRXA6PXl9zaXsG&si=uBkq4lKITHc8pLbB" target="_blank" class="btn-discreet">
-            Full Playlist
-        </a>
-    </div>
+                <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWFtFOH_aKoRXA6PXl9zaXsG&si=uBkq4lKITHc8pLbB" target="_blank" class="btn-discreet">
+                    Full Playlist
+                </a>
+            </div>
         </div>
 
         <div class="video-section">
@@ -49,10 +79,10 @@
                 </div>
             </div>
             <div class="playlist-footer">
-        <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWFThGd7kephWUwrjp8kInI2&si=c0QecSi-xIE-4BvY" target="_blank" class="btn-discreet">
-            Full Playlist
-        </a>
-    </div>
+                <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWFThGd7kephWUwrjp8kInI2&si=c0QecSi-xIE-4BvY" target="_blank" class="btn-discreet">
+                    Full Playlist
+                </a>
+            </div>
         </div>
 
         <div class="video-section">
@@ -63,10 +93,10 @@
                 </div>
             </div>
             <div class="playlist-footer">
-        <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWEaAE55OCdsrLGlgAFRNts_&si=_Tjal5I4G8F000-I" target="_blank" class="btn-discreet">
-            Full Playlist
-        </a>
-    </div>
+                <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWEaAE55OCdsrLGlgAFRNts_&si=_Tjal5I4G8F000-I" target="_blank" class="btn-discreet">
+                    Full Playlist
+                </a>
+            </div>
         </div>
 
         <div class="video-section">
@@ -76,14 +106,15 @@
                     <iframe src="https://www.youtube.com/embed/videoseries?si=Hx7EZUUhqot5P1RE&amp;list=PLFA3RxSGaXWGuxpQRuhIyzHVfxd_pNt-A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
-        <div class="playlist-footer">
-        <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWGuxpQRuhIyzHVfxd_pNt-A&si=eEvSvkz3X_LKf4Zz" target="_blank" class="btn-discreet">
-            Full Playlist
-        </a>
+            <div class="playlist-footer">
+                <a href="https://youtube.com/playlist?list=PLFA3RxSGaXWGuxpQRuhIyzHVfxd_pNt-A&si=eEvSvkz3X_LKf4Zz" target="_blank" class="btn-discreet">
+                    Full Playlist
+                </a>
+            </div>
         </div>
     </div>
-    </div>
-<footer>
+
+    <footer>
         <div class="footer-grid">
             <div></div> 
             <div class="footer-column socials">
@@ -118,11 +149,9 @@
     <script>
         function copyEmail() {
             const email = "TTL.Casts@gmail.com";
-            // Check for clipboard API support
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(email).then(showToast);
             } else {
-                // Fallback for older browsers
                 const textArea = document.createElement("textarea");
                 textArea.value = email;
                 textArea.style.position = "fixed";
@@ -142,7 +171,7 @@
 
         function showToast() {
             const toast = document.getElementById("copy-toast");
-            toast.className = "show"; // Use className to ensure it replaces previous state
+            toast.className = "show";
             setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
         }
     </script>
